@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Origin Diagnostics | Advanced CT, MRI & X-Ray Imaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Origin Diagnostics offers advanced CT, MRI, and X-ray imaging at five convenient locations in the Houston area." />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-soft: #e0ecff;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --muted: #6b7280;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --radius-lg: 1.25rem;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eff6ff 0, #f8fafc 50%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header & Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 250, 252, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--dark);
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: conic-gradient(from 140deg, #2563eb, #22c55e, #22d3ee, #2563eb);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    .logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+
+    .logo span:last-child {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2563eb, #22c55e);
+      border-radius: 999px;
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 18px;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #eff6ff;
+      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--dark);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(226, 232, 240, 0.6);
+    }
+
+    .nav-toggle {
+      display: none;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      background: #f8fafc;
+      color: var(--dark);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem 0.25rem 0.25rem;
+      border-radius: 999px;
+      background: rgba(219, 234, 254, 0.9);
+      border: 1px solid rgba(129, 140, 248, 0.5);
+      font-size: 0.75rem;
+      color: #1d4ed8;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0, #22c55e 50%, #15803d 100%);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.32);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.15rem, 3vw + 1rem, 3.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #2563eb, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #0b1220, #020617);
+      padding: 1.5rem 1.6rem;
+      color: #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+      gap: 1rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+    }
+
+    .hero-signal {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-signal-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-modality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .modality-pill {
+      border-radius: 0.9rem;
+      padding: 0.75rem 0.7rem;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.38), transparent 60%),
+                  rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.78rem;
+    }
+
+    .modality-pill h4 {
+      font-size: 0.78rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .modality-pill span {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+
+    .hero-floating-card {
+      position: absolute;
+      right: -1rem;
+      bottom: -1.2rem;
+      transform: translateY(0);
+      background: rgba(248, 250, 252, 0.96);
+      border-radius: 1rem;
+      padding: 0.8rem 1rem;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+      min-width: 190px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .floating-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+      margin-bottom: 0.15rem;
+    }
+
+    .floating-locations {
+      font-size: 0.8rem;
+      color: #111827;
+    }
+
+    .floating-locations span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #eff6ff;
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .floating-locations span::before {
+      content: "•";
+      color: #2563eb;
+    }
+
+    /* Sections */
+    section {
+      padding: 2.8rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 30rem;
+    }
+
+    /* Services */
+    .services {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.9rem 1.8rem 1.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .service-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      padding: 1.1rem 1rem;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .service-chip {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #2563eb;
+      background: #eff6ff;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      width: fit-content;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .service-meta {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    /* Locations */
+    .locations {
+      padding-top: 0.4rem;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .location-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(203, 213, 225, 0.9);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.95rem 0.95rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .location-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .location-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #64748b;
+    }
+
+    .location-pill {
+      font-size: 0.72rem;
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      background: #ecfdf5;
+      color: #15803d;
+      border: 1px solid rgba(22, 163, 74, 0.3);
+    }
+
+    .location-card h3 {
+      font-size: 0.98rem;
+      color: #0f172a;
+    }
+
+    .location-card address {
+      font-style: normal;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .location-services {
+      font-size: 0.78rem;
+      color: #4b5563;
+      margin-top: 0.3rem;
+    }
+
+    .location-services strong {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .location-map {
+      margin-top: 0.6rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 180px;
+      border: 0;
+    }
+
+    /* Why Origin */
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 0.8rem;
+    }
+
+    .bullet-list li {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .bullet-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #1d4ed8;
+      flex-shrink: 0;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 1.4rem;
+      margin-top: 1.3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      min-width: 110px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--dark);
+    }
+
+    .stat span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .card-soft {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(226, 232, 240, 0.96);
+      padding: 1.4rem 1.35rem;
+      box-shadow: 0 18px 40px rgba(148, 163, 184, 0.26);
+    }
+
+    .card-soft h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+      color: var(--dark);
+    }
+
+    .checklist {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      color: #22c55e;
+      font-weight: 700;
+      margin-right: 0.25rem;
+    }
+
+    /* Contact / CTA */
+    .cta {
+      padding: 2.3rem 0 2.9rem;
+    }
+
+    .cta-inner {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.35), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.4), transparent 60%),
+                  #020617;
+      color: #e5e7eb;
+      padding: 1.9rem 1.8rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+      color: #f9fafb;
+    }
+
+    .cta p {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+      max-width: 26rem;
+    }
+
+    .cta-meta {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #a5b4fc;
+    }
+
+    .cta-meta strong {
+      color: #e5e7eb;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.6rem 0 1.8rem;
+      border-top: 1px solid rgba(203, 213, 225, 0.9);
+      background: #f9fafb;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split-grid,
+      .cta-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 1.6rem;
+      }
+
+      .hero-image-wrap {
+        order: -1;
+      }
+
+      .hero-floating-card {
+        position: static;
+        margin-top: 1rem;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .service-grid,
+      .locations-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services,
+      .cta-inner {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .section-header {
+        align-items: flex-start;
+      }
+    }
+
+    @media (min-width: 901px) {
+      .nav-mobile-open .nav-links,
+      .nav-mobile-open .nav-cta {
+        display: flex !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-inner {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-mark">
+          <div class="logo-inner">OD</div>
+        </div>
+        <div>
+          <div>Origin Diagnostics</div>
+          <span>Advanced Imaging</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#locations">Locations</a>
+        <a href="#why">Why Origin</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn btn-ghost" onclick="scrollToSection('locations')">View Locations</button>
+        <button class="btn btn-primary" onclick="scrollToSection('contact')">Contact Us</button>
+      </div>
+      <button class="nav-toggle" onclick="toggleMobileNav()">Menu</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">
+            <div class="pill-dot"></div>
+            Outpatient CT, MRI & X-ray imaging
+          </div>
+          <h1>
+            High-definition <span>CT, MRI & X-ray</span><br />
+            across five Houston-area locations.
+          </h1>
+          <p class="hero-subtitle">
+            Origin Diagnostics is an outpatient imaging center focused on fast access, clear results,
+            and compassionate care—so patients and providers get the answers they need without the wait.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="scrollToSection('locations')">
+              Explore Locations
+            </button>
+            <button class="btn btn-ghost" onclick="scrollToSection('services')">
+              View Imaging Services
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <strong>5 Locations</strong>
+              Houston, Tomball Pkwy, Southeast & North Houston, Sugar Land
+            </div>
+            <div>
+              <strong>Core Modalities</strong>
+              CT • MRI • X-ray
+            </div>
+            <div>
+              <strong>Patients & Providers</strong>
+              Self-pay, insured, and referred patients welcome
+            </div>
+          </div>
+
+          <div class="hero-badge-row">
+            <div class="hero-badge">Board-certified radiologists</div>
+            <div class="hero-badge">Outpatient convenience</div>
+            <div class="hero-badge">Fast report turnaround</div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-card-title">Imaging Overview</div>
+                <div style="font-size:0.88rem; color:#e5e7eb;">CT, MRI & X-ray in one network</div>
+              </div>
+              <div class="hero-signal">
+                <div class="hero-signal-dot"></div>
+                <span>Open for referrals</span>
+              </div>
+            </div>
+
+            <div class="hero-modality-grid">
+              <div class="modality-pill">
+                <h4>MRI</h4>
+                <span>High-resolution soft tissue imaging for neuro, spine & joints.</span>
+              </div>
+              <div class="modality-pill">
+                <h4>CT</h4>
+                <span>Fast cross-sectional scans for trauma, lung, and abdominal studies.</span>
+              </div>
+              <div class="modality-pill">
+                <h4>X-ray</h4>
+                <span>Quick, low-dose imaging for bones, chest, and more.</span>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <strong>5</strong>
+                locations in the Houston area
+              </div>
+              <div class="hero-stat">
+                <strong>3</strong>
+                core modalities under one roof
+              </div>
+              <div class="hero-stat">
+                <strong>Fast</strong>
+                report turnaround for providers
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-floating-card">
+            <div class="floating-title">Coverage</div>
+            <div class="floating-locations">
+              Serving patients across:
+              <span>Houston</span>
+              <span>Tomball Pkwy</span>
+              <span>SE &amp; North Houston</span>
+              <span>Sugar Land</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Focused imaging, done exceptionally well.</h2>
+            <p class="section-subtitle">
+              Origin Diagnostics specializes in three core modalities—CT, MRI, and X-ray—
+              providing consistent quality and reliable interpretations for every study.
+            </p>
+          </div>
+          <button class="btn btn-ghost" onclick="scrollToSection('contact')">
+            Call or email our team
+          </button>
+        </div>
+
+        <div class="services">
+          <div class="service-grid">
+            <article class="service-card">
+              <div class="service-chip">MRI</div>
+              <h3>Magnetic Resonance Imaging</h3>
+              <p>
+                High-resolution imaging without radiation, ideal for brain, spine, joints,
+                and soft tissues. Excellent detail to support confident diagnosis.
+              </p>
+              <div class="service-meta">
+                <strong>Common studies:</strong><br />
+                Brain MRI • Spine MRI • Joint MRI • Abdomen &amp; pelvis
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-chip">CT</div>
+              <h3>Computed Tomography</h3>
+              <p>
+                Rapid, cross-sectional scans for trauma, lung, cardiac, and abdominal imaging.
+                Optimized protocols balance image quality and dose.
+              </p>
+              <div class="service-meta">
+                <strong>Common studies:</strong><br />
+                CT head • CT chest • CT abdomen &amp; pelvis • CT extremities
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-chip">X-ray</div>
+              <h3>Digital X-ray</h3>
+              <p>
+                Quick, low-dose digital radiography for bones, chest, and other targeted views,
+                ideal for urgent and follow-up imaging.
+              </p>
+              <div class="service-meta">
+                <strong>Common studies:</strong><br />
+                Chest X-ray • Spine • Extremities • Pre-op screening
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations with Google Maps -->
+    <section id="locations" class="locations">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Five convenient Origin Diagnostics locations.</h2>
+            <p class="section-subtitle">
+              Use the interactive Google Maps below to explore each location, view nearby landmarks,
+              and get turn-by-turn directions in your browser or mobile app.
+            </p>
+          </div>
+          <div class="section-subtitle">
+            General questions?<br />
+            Phone: <strong>(281) 899-0019</strong>
+          </div>
+        </div>
+
+        <div class="locations-grid">
+          <!-- Houston -->
+          <article class="location-card">
+            <div class="location-tag-row">
+              <div class="location-tag">Houston</div>
+              <div class="location-pill">Full imaging suite</div>
+            </div>
+            <h3>Origin Diagnostics – Houston</h3>
+            <address>
+              9135 Katy Freeway, Suite 102<br />
+              Houston, TX 77024
+            </address>
+            <div class="location-services">
+              <strong>Available:</strong> MRI • CT • X-ray
+            </div>
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps?q=9135+Katy+Freeway+Suite+102+Houston+TX+77024&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Tomball Pkwy -->
+          <article class="location-card">
+            <div class="location-tag-row">
+              <div class="location-tag">Tomball Pkwy</div>
+              <div class="location-pill">Northwest Houston</div>
+            </div>
+            <h3>Origin Diagnostics – Tomball Parkway</h3>
+            <address>
+              19610 Tomball Parkway, Suite 300<br />
+              Houston, TX 77070
+            </address>
+            <div class="location-services">
+              <strong>Available:</strong> MRI • CT • X-ray
+            </div>
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps?q=19610+Tomball+Parkway+Suite+300+Houston+TX+77070&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Southeast Houston -->
+          <article class="location-card">
+            <div class="location-tag-row">
+              <div class="location-tag">Southeast Houston</div>
+              <div class="location-pill">Near Gulf Fwy</div>
+            </div>
+            <h3>Origin Diagnostics – Southeast Houston</h3>
+            <address>
+              10761 Gulf Freeway, Suite A<br />
+              Houston, TX 77034
+            </address>
+            <div class="location-services">
+              <strong>Available:</strong> MRI • CT • X-ray
+            </div>
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps?q=10761+Gulf+Freeway+Suite+A+Houston+TX+77034&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- North Houston -->
+          <article class="location-card">
+            <div class="location-tag-row">
+              <div class="location-tag">North Houston</div>
+              <div class="location-pill">Easy freeway access</div>
+            </div>
+            <h3>Origin Diagnostics – North Houston</h3>
+            <address>
+              7000 North Freeway, Suite 900A<br />
+              Houston, TX 77076
+            </address>
+            <div class="location-services">
+              <strong>Available:</strong> MRI • CT • X-ray
+            </div>
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps?q=7000+North+Freeway+Suite+900A+Houston+TX+77076&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Sugar Land -->
+          <article class="location-card">
+            <div class="location-tag-row">
+              <div class="location-tag">Sugar Land</div>
+              <div class="location-pill">Fort Bend County</div>
+            </div>
+            <h3>Origin Diagnostics – Sugar Land</h3>
+            <address>
+              17227 W Grand Parkway S<br />
+              Sugar Land, TX 77479
+            </address>
+            <div class="location-services">
+              <strong>Available:</strong> MRI • CT • X-ray
+            </div>
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps?q=17227+W+Grand+Parkway+S+Sugar+Land+TX+77479&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Origin -->
+    <section id="why">
+      <div class="container split-grid">
+        <div>
+          <h2 class="section-title">Why patients and providers choose Origin Diagnostics.</h2>
+          <p class="section-subtitle">
+            We’re purpose-built for outpatient imaging: modern scanners, efficient workflows,
+            and radiologists dedicated to clear, actionable reports.
+          </p>
+
+          <ul class="bullet-list">
+            <li>
+              <div class="bullet-icon">1</div>
+              <div>
+                <strong>Accessible locations</strong><br />
+                Five sites across the Houston area, each easily found using the integrated Google Maps
+                view in our Locations section.
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">2</div>
+              <div>
+                <strong>Board-certified radiologists</strong><br />
+                Studies are interpreted by experienced, board-certified radiologists with subspecialty expertise.
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">3</div>
+              <div>
+                <strong>Clear communication</strong><br />
+                We coordinate closely with referring providers and ensure patients understand what to expect every step of the way.
+              </div>
+            </li>
+          </ul>
+
+          <div class="stat-row">
+            <div class="stat">
+              <strong>3</strong>
+              <span>Core imaging modalities</span>
+            </div>
+            <div class="stat">
+              <strong>5</strong>
+              <span>Houston-area locations</span>
+            </div>
+            <div class="stat">
+              <strong>Fast</strong>
+              <span>Report turnaround time</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-soft">
+          <h3>Preparing for your imaging exam</h3>
+          <ul class="checklist">
+            <li>Arrive 15–20 minutes before your exam for check-in and paperwork.</li>
+            <li>Bring your photo ID, insurance card, and any referral or imaging orders.</li>
+            <li>Inform our staff if you are pregnant, may be pregnant, or breastfeeding.</li>
+            <li>For MRI, remove metal objects (jewelry, watches, piercings) before your exam.</li>
+            <li>If you’ve been told you’ll receive contrast, follow any fasting instructions you were given.</li>
+          </ul>
+          <p style="font-size:0.8rem;color:#6b7280;margin-top:0.7rem;">
+            Have questions about prep, insurance coverage, or imaging options?
+            Call our team at <strong>(281) 899-0019</strong> or fax documents to <strong>(281) 609-9763</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (no scheduling form) -->
+    <section id="contact" class="cta">
+      <div class="container">
+        <div class="cta-inner">
+          <div>
+            <h2>Contact Origin Diagnostics</h2>
+            <p>
+              Our team is available to answer questions about imaging studies, locations, exam preparation,
+              and coordination with your referring provider.
+            </p>
+            <div class="cta-meta">
+              <strong>Central Contact</strong><br />
+              Phone: <strong>(281) 899-0019</strong><br />
+              Fax: <strong>(281) 609-9763</strong><br />
+              Email: <strong>info@origindiagnostics.com</strong>
+            </div>
+          </div>
+
+          <div class="card-soft">
+            <h3>How to use this site</h3>
+            <ul class="checklist">
+              <li>Browse the <strong>Services</strong> section to learn about CT, MRI, and X-ray.</li>
+              <li>Use the embedded <strong>Google Maps</strong> in the Locations section to find the site closest to you.</li>
+              <li>Call or email our team with any questions about exams, directions, or referrals.</li>
+            </ul>
+            <p style="font-size:0.8rem;color:#6b7280;margin-top:0.7rem;">
+              For driving directions, tap the map for your preferred location to open Google Maps
+              on your device.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        © <span id="year"></span> Origin Diagnostics. All rights reserved.
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="#locations">Locations</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      window.scrollTo({
+        top: el.offsetTop - 72,
+        behavior: "smooth",
+      });
+    }
+
+    // Simple mobile nav toggle (desktop-only visibility handled by CSS)
+    function toggleMobileNav() {
+      document.body.classList.toggle("nav-mobile-open");
+    }
+
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
