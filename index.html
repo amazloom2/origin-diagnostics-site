@@ -720,6 +720,8 @@
     }
 
     /* Responsive */
+
+    /* Tablets / small desktops */
     @media (max-width: 900px) {
       .hero-grid,
       .split-grid,
@@ -740,6 +742,11 @@
         margin-top: 1rem;
       }
 
+      /* Mobile nav behaviour */
+      .nav {
+        padding: 0.6rem 0 0.8rem;
+      }
+
       .nav-links,
       .nav-cta {
         display: none;
@@ -747,9 +754,35 @@
 
       .nav-toggle {
         display: inline-flex;
+        margin-left: auto;
+      }
+
+      body.nav-mobile-open .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      body.nav-mobile-open .nav-links,
+      body.nav-mobile-open .nav-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding-bottom: 0.6rem;
+      }
+
+      body.nav-mobile-open .nav-links a,
+      body.nav-mobile-open .nav-cta .btn {
+        width: 100%;
+      }
+
+      body.nav-mobile-open .nav-cta {
+        gap: 0.5rem;
       }
     }
 
+    /* Phones / narrow tablets */
     @media (max-width: 768px) {
       .service-grid,
       .locations-grid {
@@ -764,18 +797,39 @@
       .section-header {
         align-items: flex-start;
       }
-    }
 
-    @media (min-width: 901px) {
-      .nav-mobile-open .nav-links,
-      .nav-mobile-open .nav-cta {
-        display: flex !important;
+      .hero-meta {
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .location-map iframe {
+        height: 220px;
       }
     }
 
     @media (max-width: 480px) {
       .cta-inner {
         padding: 1.4rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -803,7 +857,14 @@
         <button class="btn btn-ghost" onclick="scrollToSection('locations')">View Locations</button>
         <button class="btn btn-primary" onclick="scrollToSection('contact')">Contact Us</button>
       </div>
-      <button class="nav-toggle" onclick="toggleMobileNav()">Menu</button>
+      <button
+        class="nav-toggle"
+        onclick="toggleMobileNav()"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        Menu
+      </button>
     </div>
   </header>
 
@@ -1234,16 +1295,42 @@
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (!el) return;
+      const headerOffset = 72;
+      const rect = el.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const top = rect.top + scrollTop - headerOffset;
+
       window.scrollTo({
-        top: el.offsetTop - 72,
+        top,
         behavior: "smooth",
       });
+
+      // Close mobile nav after navigating
+      if (window.innerWidth <= 900) {
+        document.body.classList.remove("nav-mobile-open");
+        const btn = document.querySelector(".nav-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
     }
 
-    // Simple mobile nav toggle (desktop-only visibility handled by CSS)
+    // Mobile nav toggle
     function toggleMobileNav() {
-      document.body.classList.toggle("nav-mobile-open");
+      const body = document.body;
+      const btn = document.querySelector(".nav-toggle");
+      const isOpen = body.classList.toggle("nav-mobile-open");
+      if (btn) {
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      }
     }
+
+    // Reset nav state on resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) {
+        document.body.classList.remove("nav-mobile-open");
+        const btn = document.querySelector(".nav-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+    });
 
     // Dynamic year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
